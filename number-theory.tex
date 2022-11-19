@@ -1,0 +1,153 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\linespread{1}
+\title{Number Theory}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Greatest Common Divisors}
+
+\section{Congruence}
+  \subsection{Modular Inverse}
+    A modular inverse of an integer b (modulo p) is the integer $ b^{-1} $ such that:
+      $$ b \, b^{-1} \equiv 1 \; mod \; p $$
+    \subsubsection{Extended Euclidean Method}
+      if $ b \, b^{-1} \equiv 1 \; mod \; p $, then we have:
+      \begin{align*}
+        b \, b^{-1} = py + 1 \\
+        b \, b^{-1} - py = 1 
+      \end{align*}
+      If we can solve the indeterminate equation $ bx + py = 1 $, then we can get the value of $ b^{-1} $, which is $ x $. \\
+      To get the $ x $ value, we can use extended euclidean method.
+      \begin{lstlisting}[language=Python, basicstyle=\small]
+        def extended_gcd(a, b):
+            if b == 0:
+                return (1, 0)
+            x, y = extended_gcd(b, a % b)
+            return (y, x - a // b * y)
+        
+        def get_modular_inverse(x, p):
+            res, _ = extended_gcd(x, p)
+            while res < 0 {
+                res += p
+            }
+            return res
+      \end{lstlisting}
+
+  \subsection{Lucas Theorem}
+    For non-negative integers m and n and a prime p, the following congruence relation holds:
+    \begin{equation*}
+      \binom{m}{n} \equiv \prod_{i = 0}^{k} \binom{m_i}{n_i} \; mod \; p
+    \end{equation*}
+    
+    Where
+    \begin{align*}
+      m &= m_{k}p^{k} + m_{k-1}p^{k-1} + ... + m_{1}p + m_{0} \\
+      n &= n_{k}p^{k} + n_{k-1}p^{k-1} + ... + n_{1}p + n_{0}
+    \end{align*}
+
+    Another form:
+    \begin{equation*}
+      \binom{m}{n} \equiv \binom{\lfloor m/p \rfloor}{\lfloor n/p \rfloor} \binom{m \; mod \; p}{n \; mod \; p} \; mod \; p
+    \end{equation*}
+  
+  \subsection{Common Equation and Conclusions}
+    if $ a_1 \equiv b_1 \; mod \; m $, $ a_2 \equiv b_2 \; mod \; m $ then:
+    \begin{align*}
+        a_1 + a_2 & \equiv b_1 + b_2 \; mod \; m \\
+        a_1 - a_2 & \equiv b_1 - b_2 \; mod \; m \\
+        a_1 \times a_2 & \equiv b_1 \times b_2 \; mod \; m
+    \end{align*}
+
+    if $ a \equiv b \; mod \; m $, $ k > 0 $, and $d$ is a common divisor of $a$, $b$ and $m$, then:
+    \begin{align*}
+      ak & \equiv bk \; mod \; m \\
+      \frac{a}{d} & \equiv \frac{b}{d} \; mod \; \frac{m}{d}
+    \end{align*}
+  
+\section{Numeral System}
+  \subsection{Number of bits for a number N with base b}
+    Assume there are k bits, then:
+    \begin{align*}
+      b^{k-1} \leq& \;N < b^k \\
+      log_b^N <& \;k \leq log_b^{N} + 1
+    \end{align*}
+    If such integer k does not exist, then we must have an integer $t$:
+    \begin{equation*}
+      \begin{cases}
+        t \leq log_b^N \\
+        log_b^N + 1 < t + 1
+      \end{cases}
+    \end{equation*}
+    Under this condition, we have:
+    \begin{equation*}
+      \begin{cases}
+        N >= b^t \\
+        N < b^t
+      \end{cases}
+    \end{equation*}
+    which is impossible. So we can conclude that $k$ must exist, and the value of $k$ is $\lfloor log_b^N + 1 \rfloor$ or $\lceil log_b^{N + 1} \rceil$.
+    The latter one is calculated by:
+    \begin{align*}
+      N \leq& \;b^k - 1 \\
+      k \geq& \;log_b^{N + 1} \\
+    \end{align*}
+    To represent N numbers from 0 to N - 1, we need $\lfloor log_b^{N-1} + 1 \rfloor$ or $\lceil log_b^N \rceil$ bits. \\
+    Similarly, for a binary tree of N nodes, the min height (if a single node has height 1) is $\lfloor log_b^N + 1 \rfloor$ or $\lceil log_b^{N + 1} \rceil$.
+
+\section{Others}
+  \subsection{Gray Code}
+    \subsubsection{Transform}
+      For a n bits number, the index of digits from right to left is 0 to n - 1. The number can be represented as
+      $B_{n-1}...B_{1}B_{0}$.
+      \begin{equation*}
+        \begin{cases}
+          G_{n-1} = B_{n-1} \\
+          G_{i} = B_{i} \oplus B_{i+1}, 0 \leq i \leq n - 2
+        \end{cases}
+      \end{equation*}
+
+      \begin{equation*}
+        \begin{cases}
+          B_{n-1} = G_{n-1} \\
+          B_{i} = G_{i} \oplus B_{i+1}, 0 \leq i \leq n - 2
+        \end{cases}
+      \end{equation*}
+
+    \subsubsection{Construction}
+      \textbf{Method 1:} \par
+      If we have two digits gray code 00 01 11 10, to construct three digits gray code,
+      we can make a mirror symmetry: 00 01 11 10 \vline \;10 11 01 00.
+
+      \smallskip 
+
+      Then for the first part we append the prefix 0, for the second part, we append 1. finally, we have: \par
+      000 001 011 010 \vline \;110 111 101 100.
+
+      \bigskip
+
+      \textbf{Method 2:} \par
+      From the starting all-zero gray code, we can construct the next two numbers using following two steps:
+
+      \smallskip
+      
+      (1). Flip the least significant digit to get the next gray code. \par
+      (2). Flip the left bit of the rightmost 1 to get the next gray code. 
+    
+    \subsubsection{Formula}
+      \begin{equation*}
+        G(n) = n \oplus \lfloor{\frac{n}{2}}\rfloor
+      \end{equation*}
+\end{document}

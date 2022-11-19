@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\linespread{1}
+\title{Abstract Algebra}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Preliminaries}
+\subsection{Set Theory}
+\subsubsection{Function \& Map}
+\textbf{Concepts:} \par
+$$ A \xrightarrow[]{f} B $$
+It denotes a function $f$ from $A$ to $B$ and the value of $f$ at a is denoted at $f(a)$. 
+The set $A$ is called the domain of $f$ and $B$ is called the codomain of $f$. \bigskip
+
+$$ f(A) = \{b \in B \, | \, b = f(a), for \; a \in A\} $$
+The set $f(A)$ is a subset of $B$, called the range or image of $f$. \bigskip
+
+$$ f^{-1}(C) = \{ a \in A \, | \, f(a) \in C \} $$
+For each subset $C$ of $B$, the set $f^{-1}(C)$ consisting elements of $A$ mapping into $C$ under $f$ is called the preimage
+or inverse image of $C$. \
+For each $ b \in B $, the preimage of $\{b\}$ under $f$ is called the fiber of $b$ over $f$. \bigskip
+
+$$ (g \circ f)(a) = g(f(a)) $$
+if $ f: A \rightarrow B $ and $ g: B \rightarrow C $, then the composite map $ g \circ f: A \rightarrow C $ is defined by above equation. \bigskip
+
+$$ f: A \rightarrow B $$
+\begin{itemize}
+    \item $f$ is injective or is an injection if whenever $ a_{1} \ne a_{2} $, then $ f(a_{1}) \ne f(a_{2}) $
+    \item $f$ is surjective or is a surjection if for all $ b \in B $ there is some $ a \in A $ 
+          such that $ f(a) = b $, i.e., the image of f is all of B.
+    \item $f$ is bijective or is a bijection if it is both injective and surjective. If such a bijection $f$
+          exists from $A$ to $B$, then we say $A$ and $B$ are in bijective correspondence.
+    \item $f$ has a left inverse if there is a function $ g: B \rightarrow A $ such that $ g \circ f: A \rightarrow A $ is the identity map on A,
+          i.e., $ (g \circ f)(a) = a $, for all $ a \in A $.
+    \item $f$ has a right inverse if there is a function $ g: B \rightarrow A $ such that $ f \circ g: B \rightarrow B $ is the identity map on B,
+    i.e., $ (f \circ g)(b) = b $, for all $ b \in B $.
+\end{itemize} \bigskip
+
+\textbf{Proposition:} \par
+
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\linespread{1}
+\title{Matrix Calculus}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Basics}
+\subsection{Trace Concepts}
+\begin{equation*}
+  \text{tr}(A) = \sum_{i = 1}^{n} a_{ii}
+\end{equation*}
+
+If $A$ is $n$ x $m$, $B$ is $m$ x $n$, then
+\begin{align*}
+    AB &= [\sum_{k = 1}^{m} a_{ik} b_{kj}] \\
+    \text{tr}(AB) &= \sum_{i = 1}^{n} \sum_{k = 1}^{m} a_{ik} b_{ki}
+\end{align*}
+
+If $A$ is $m$ x $n$, $B$ is $m$ x $n$, then
+\begin{align*}
+    A^{T}B &= [\sum_{k = 1}^{m} a_{ki} b_{kj}] \\
+    \text{tr}(A^{T}B) &= \sum_{i = 1}^{n} \sum_{k = 1}^{m} a_{ki} b_{ki}
+\end{align*}
+
+\subsection{Trace Properties}
+If $AB$ and $BA$ are both defined, then $A^{T}$ and $B$ have the same shape, and $\text{tr}(AB) = \text{tr}(BA)$, which is equal to $\sum_{i, j} a_{ij}b_{ji}$. \bigskip
+
+Element-wise product (Hadamard product):  $tr(A^T (B \odot C)) = tr((A \odot B)^T B)$
+
+\end{document}
