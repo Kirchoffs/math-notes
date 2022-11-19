@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\linespread{2}
+\title{Combinatorics}
+\author{Benjamin}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Permutation and Combination}
+    \subsection{Multinomial Theorem}
+        \begin{equation*}
+            (x_1 + x_2 + ... + x_m)^n = 
+            \sum_{k_1 + k_2 + ... + k_m = n; \: k_1, k_2, ..., k_m \,\geq\, 0}
+            \binom{n}{k_1, k_2, ..., k_m} \prod_{t = 1}^{m} x_t^{k_t}
+        \end{equation*}
+
+        where
+        \begin{equation*}
+            \binom{n}{k_1, k_2, ..., k_m} = \frac{n!}{k_1! k_2! ... k_m!}
+        \end{equation*}
+
+        \bigskip
+        
+        When $m = 2$, we have binomial theorem:
+        \begin{equation*}
+            \begin{aligned}
+                (x_1 + x_2)^n & = \sum_{k = 0}^{n} \binom{n}{k} x^k \\
+                              & = \sum_{k = 0}^{n} \frac{n!}{k! \: (n-k)!} x^k \\
+                              & = \sum_{k = 0}^{n} \binom{n}{k, \: n-k} x^k \\
+            \end{aligned}
+        \end{equation*}
+\end{document}
