@@ -8,6 +8,7 @@
 \usepackage{fancyhdr}
 \usepackage{listings}
 
+\setlength\parindent{0pt}
 \pagestyle{fancy}
 \linespread{2}
 \title{Number Theory}
@@ -21,45 +22,45 @@
 \section{Greatest Common Divisors}
 
 \section{Congruence}
-    \subsection{Modular Inverse}
-        A modular inverse of an integer b (modulo p) is the integer $ b^{-1} $ such that:
-            $$ b \, b^{-1} \equiv 1 \; mod \; p $$
-        \subsubsection{Extended Euclidean Method}
-            if $ b \, b^{-1} \equiv 1 \; mod \; p $, then we have:
-            \begin{align*}
-                b \, b^{-1} = py + 1 \\
-                b \, b^{-1} - py = 1 
-            \end{align*}
-            If we can solve the indeterminate equation $ bx + py = 1 $, then we can get the value of $ b^{-1} $, which is $ x $. \\
-            To get the $ x $ value, we can use extended euclidean method.
-            \begin{lstlisting}[language=Python, basicstyle=\small]
-                def extended_gcd(a, b):
-                    if b == 0:
-                        return (1, 0)
-                    x, y = extended_gcd(b, a % b)
-                    return (y, x - a // b * y)
-                
-                def get_modular_inverse(x, p):
-                    res, _ = extended_gcd(x, p)
-                    while res < 0 {
-                        res += p
-                    }
-                    return res
-            \end{lstlisting}
-    \subsection{Lucas Theorem}
-        For non-negative integers m and n and a prime p, the following congruence relation holds:
-        \begin{equation*}
-            \binom{m}{n} \equiv \prod_{i = 0}^{k} \binom{m_i}{n_i} \; mod \; p
-        \end{equation*}
+  \subsection{Modular Inverse}
+    A modular inverse of an integer b (modulo p) is the integer $ b^{-1} $ such that:
+      $$ b \, b^{-1} \equiv 1 \; mod \; p $$
+    \subsubsection{Extended Euclidean Method}
+      if $ b \, b^{-1} \equiv 1 \; mod \; p $, then we have:
+      \begin{align*}
+        b \, b^{-1} = py + 1 \\
+        b \, b^{-1} - py = 1 
+      \end{align*}
+      If we can solve the indeterminate equation $ bx + py = 1 $, then we can get the value of $ b^{-1} $, which is $ x $. \\
+      To get the $ x $ value, we can use extended euclidean method.
+      \begin{lstlisting}[language=Python, basicstyle=\small]
+        def extended_gcd(a, b):
+            if b == 0:
+                return (1, 0)
+            x, y = extended_gcd(b, a % b)
+            return (y, x - a // b * y)
         
-        \noindent Where
-        \begin{align*}
-            m = m_{k}p^{k} + m_{k-1}p^{k-1} + ... + m_{1}p + m_{0} \\
-            n = n_{k}p^{k} + n_{k-1}p^{k-1} + ... + n_{1}p + n_{0}
-        \end{align*}
+        def get_modular_inverse(x, p):
+            res, _ = extended_gcd(x, p)
+            while res < 0 {
+                res += p
+            }
+            return res
+      \end{lstlisting}
+  \subsection{Lucas Theorem}
+    For non-negative integers m and n and a prime p, the following congruence relation holds:
+    \begin{equation*}
+      \binom{m}{n} \equiv \prod_{i = 0}^{k} \binom{m_i}{n_i} \; mod \; p
+    \end{equation*}
+    
+    Where
+    \begin{align*}
+      m = m_{k}p^{k} + m_{k-1}p^{k-1} + ... + m_{1}p + m_{0} \\
+      n = n_{k}p^{k} + n_{k-1}p^{k-1} + ... + n_{1}p + n_{0}
+    \end{align*}
 
-        \noindent Another form:
-        \begin{equation*}
-            \binom{m}{n} \equiv \binom{\lfloor m/p \rfloor}{\lfloor n/p \rfloor} \binom{m \; mod \; p}{n \; mod \; p} \; mod \; p
-        \end{equation*}
+    Another form:
+    \begin{equation*}
+      \binom{m}{n} \equiv \binom{\lfloor m/p \rfloor}{\lfloor n/p \rfloor} \binom{m \; mod \; p}{n \; mod \; p} \; mod \; p
+    \end{equation*}
 \end{document}
