@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage[margin=1in, includefoot]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\pagestyle{fancy}
+\linespread{2}
+\title{Number Theory}
+\author{Benjamin}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Greatest Common Divisors}
+
+\section{Congruence}
+    \subsection{Modular Inverse}
+        A modular inverse of an integer b (modulo p) is the integer $ b^{-1} $ such that:
+            $$ b \, b^{-1} \equiv 1 \; mod \; p $$
+        \subsubsection{Extended Euclidean Method}
+            if $ b \, b^{-1} \equiv 1 \; mod \; p $, then we have:
+            \begin{align*}
+                b \, b^{-1} = py + 1 \\
+                b \, b^{-1} - py = 1 
+            \end{align*}
+            If we can solve the indeterminate equation $ bx + py = 1 $, then we can get the value of $ b^{-1} $, which is $ x $. \\
+            To get the $ x $ value, we can use extended euclidean method.
+            \begin{lstlisting}[language=Python, basicstyle=\small]
+                def extended_gcd(a, b):
+                    if b == 0:
+                        return (1, 0)
+                    x, y = extended_gcd(b, a % b)
+                    return (y, x - a // b * y)
+                
+                def get_modular_inverse(x, p):
+                    res, _ = extended_gcd(x, p)
+                    while res < 0 {
+                        res += p
+                    }
+                    return res
+            \end{lstlisting}
+        \subsubsection{}
+\end{document}

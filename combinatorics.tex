@@ -1,11 +1,12 @@
 \documentclass{article}
+
 \usepackage{lipsum}
 \usepackage{tikz}
 \usepackage[margin=1in, includefoot]{geometry}
 \usepackage{amsmath}
-\usepackage{indentfirst}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage{listings}
 
 \pagestyle{fancy}
 \linespread{2}
@@ -14,6 +15,7 @@
 \date{}
 
 \begin{document}
+
 \maketitle
 
 \section{Permutation and Combination}
@@ -39,4 +41,16 @@
                               & = \sum_{k = 0}^{n} \binom{n}{k, \: n-k} x^k \\
             \end{aligned}
         \end{equation*}
+
+        \bigskip
+
+        In python, we can use the following code to calculate the multinomial coefficient:
+        \begin{lstlisting}[language=Python, basicstyle=\small]
+            from math import factorial, prod
+            def multinomial(arr):
+                return (
+                    factorial(sum(arr)) // 
+                    prod([factorial(num) for num in arr])
+                )
+        \end{lstlisting}
 \end{document}
