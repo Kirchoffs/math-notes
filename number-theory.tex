@@ -46,5 +46,20 @@
                     }
                     return res
             \end{lstlisting}
-        \subsubsection{}
+    \subsection{Lucas Theorem}
+        For non-negative integers m and n and a prime p, the following congruence relation holds:
+        \begin{equation*}
+            \binom{m}{n} \equiv \prod_{i = 0}^{k} \binom{m_i}{n_i} \; mod \; p
+        \end{equation*}
+        
+        \noindent Where
+        \begin{align*}
+            m = m_{k}p^{k} + m_{k-1}p^{k-1} + ... + m_{1}p + m_{0} \\
+            n = n_{k}p^{k} + n_{k-1}p^{k-1} + ... + n_{1}p + n_{0}
+        \end{align*}
+
+        \noindent Another form:
+        \begin{equation*}
+            \binom{m}{n} \equiv \binom{\lfloor m/p \rfloor}{\lfloor n/p \rfloor} \binom{m \; mod \; p}{n \; mod \; p} \; mod \; p
+        \end{equation*}
 \end{document}
